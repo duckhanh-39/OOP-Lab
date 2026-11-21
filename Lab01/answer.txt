@@ -1,0 +1,46 @@
+Exercise 6.1:
+a, If users choose "Cancel", the result of program is "No"
+because the program only checks if users selected "Yes".
+If users select "Yes", the result is "Yes".
+If users select "No" or "Cancel", the result is "No"
+
+b, * Case 1: Only two options: "Yes" and "No"
+- Source code:
+import javax.swing.JOptionPane;
+
+public class ChoosingOption {
+    public static void main(String[] args) {
+        int option = JOptionPane.showConfirmDialog(null, "Do you want to change the first class ticket?", "Confirm", JOptionPane.YES_NO_OPTION);
+        JOptionPane.showMessageDialog(null, "You've chosen: " + (option == JOptionPane.YES_OPTION?"Yes":"No"));
+    }
+}
+
+- Explaination: JOptionPane.YES_NO_OPTION sets the dialog to display only "Yes" and "No" buttons
+(instead of the default 3 buttons: Yes, No, Cancel).
+
+* Case 2: Only two options "I do" and "I don't"
+- Source code:
+import javax.swing.JOptionPane;
+
+public class ChoosingOption {
+    public static void main(String[] args) {
+        Object[] options = {"I do", "I don't"};
+
+    int option = JOptionPane.showOptionDialog(
+        null,
+        "Do you want to change the first class ticket?",
+        "Custom Option",
+        JOptionPane.DEFAULT_OPTION,
+        JOptionPane.QUESTION_MESSAGE,
+        null,
+        options,
+        options[0]
+    );
+
+    JOptionPane.showMessageDialog(null, "You've chosen: " + options[option]);
+    }
+}
+
+- Explaination: showOptionDialog allows us to create labels for buttons instead of using the default options.
+When passed an array, Java iterates through each element from left to right and generates the corresponding
+number of buttons, using the string values in the array as the text displayed on the buttons.
